@@ -1,0 +1,1 @@
+# Fontaweseome SVG icons for AngularJS
