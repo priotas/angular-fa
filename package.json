@@ -36,6 +36,6 @@
     "test": "jest tests",
     "demo:dev": "webpack --watch --hot --config webpack.demo.config.js",
     "demo:serve": "live-server ./demo/dist",
-    "docs": "webpack --config webpack.docs.config.js"
+    "docs": "webpack --optimize-minimize --config webpack.docs.config.js"
   }
 }

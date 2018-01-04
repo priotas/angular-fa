@@ -1,88 +1,86 @@
-<div class="row">
+<div class="row" style="margin-top: 20px;">
     <div class="col-sm">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">
-                <fa-icon icon="cog" spin="true"></fa-icon> Options
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                        <fa-icon icon="code" pulse="true"></fa-icon> Code
-                </a>
-            </li>
-        </ul>
-        <div class="tab-content" id="options">
-            <form>
-                <div class="form-group row">
-                    <label 
-                        for="prefix" 
-                        class="col-sm-4 col-form-label"> Prefix
-                    </label>
-                    <div class="col-sm-8">
-                        <select
-                            style="width: 100%"
-                            class="custom-select"
-                            ng-options="prefix as prefix for prefix in $ctrl.prefixes" 
-                            ng-model="$ctrl.locals.prefix">
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="icon" class="col-sm-4 col-form-label">Icon</label>
-                    <div class="col-sm-8">
-                        <input 
-                            class="form-control" 
-                            type="search" 
-                            placeholder="Find Icon" 
-                            aria-label="Search" 
-                            ng-change="$ctrl.search()" 
-                            ng-model="$ctrl.locals.icon">
-                    </div>
-                </div>
-
-                <div ng-repeat="prop in $ctrl.props">
-                    <div class="form-group row" ng-if="prop.type === $ctrl.types.string">
-                        <label for="{{prop.name}}" 
-                            class="col-sm-4 col-form-label"> {{prop.title}}
+        <div class="card">
+            <div class="card-header">
+                <fa-icon icon="cog" spin="true"></fa-icon> Icon Options
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group row">
+                        <label for="prefix" class="col-sm-4 col-form-label"> Prefix
                         </label>
                         <div class="col-sm-8">
-                            <input
-                                ng-model="$ctrl.properties[prop.name]"
-                                ng-change="$ctrl.updateProperty(prop.name)"  
-                                class="form-control" 
-                                placeholder="{{prop.title}}">
+                            <select style="width: 100%" class="custom-select" ng-change="$ctrl.updatePrefix()" ng-options="prefix as prefix for prefix in $ctrl.prefixes"
+                                ng-model="$ctrl.locals.prefix">
+                            </select>
                         </div>
                     </div>
 
-                    <div class="form-group row" ng-if="prop.type === $ctrl.types.boolean">
-                        <div class="col-sm-4">{{prop.title}}</div>
+                    <div class="form-group row">
+                        <label for="icon" class="col-sm-4 col-form-label">Icon</label>
                         <div class="col-sm-8">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                            <input 
-                                class="form-check-input" 
-                                ng-click="$ctrl.toggleBoolean(prop.name)" 
-                                type="checkbox"> &nbsp;
-                            </label>
-                        </div>
+                            <input class="form-control" type="search" placeholder="Find Icon" aria-label="Search" ng-change="$ctrl.search()" ng-model="$ctrl.locals.icon">
                         </div>
                     </div>
-                </div>
-            </form>
+
+                    <div ng-repeat="prop in $ctrl.props">
+                        <div class="form-group row" ng-if="prop.type === $ctrl.types.string && !prop.isEnum">
+                            <label for="{{prop.name}}" class="col-sm-4 col-form-label"> {{prop.title}}
+                            </label>
+                            <div class="col-sm-8">
+                                <input ng-model="$ctrl.properties[prop.name]" ng-change="$ctrl.updateProperty(prop.name)" class="form-control" placeholder="{{prop.title}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row" ng-if="prop.isEnum">
+                            <label for="{{prop.name}}" class="col-sm-4 col-form-label"> {{prop.title}}
+                            </label>
+                            <div class="col-sm-8">
+                                <select style="width: 100%" class="custom-select" ng-change="$ctrl.updateProperty(prop.name)" ng-options="value as value for value in prop.enum"
+                                    ng-model="$ctrl.properties[prop.name]">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row" ng-if="prop.type === $ctrl.types.boolean">
+                            <div class="col-sm-4">{{prop.title}}</div>
+                            <div class="col-sm-8">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" 
+                                            ng-model="$ctrl.properties[prop.name]"
+                                            ng-click="$ctrl.toggleBoolean(prop.name)" type="checkbox"> &nbsp;
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <button class="btn btn-primary" ng-click="$ctrl.reset()">
+                    <fa-icon icon="redo"></fa-icon>
+                    Reset</button>
+            </div>
         </div>
     </div>
 
     <div class="col-sm">
-        <code>
-        {{ $ctrl.component }}
-        </code>
-    </div>
+        <div class="card">
+            <div class="card-header">
+                <fa-icon icon="camera-retro" pulse="true"></fa-icon> Preview
+            </div>
+            <div class="card-body">
+                <code>
+                    {{ $ctrl.component }}
+                </code>
+                <hr />
+                <p ng-if="!$ctrl.locals.icon">
+                    <fa-icon icon="hand-spock"></fa-icon>
+                    Please select an icon, sailor.
+                </p>
+                <component-compiler component="faIcon" locals="$ctrl.locals"></component-compiler>
+            </div>
+        </div>
 
-
-    <div class="col-sm" style="font-size: 44px">
-        <component-compiler component="faIcon" locals="$ctrl.locals"></component-compiler>
     </div>
 
 </div>

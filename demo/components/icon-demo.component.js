@@ -24,7 +24,9 @@ class DemoController {
             this.props.push({
                 name: key,
                 title: key.charAt(0).toUpperCase() + key.slice(1),
-                type: value.type
+                type: value.type,
+                isEnum: angular.isArray(value.enum) || false,
+                enum: value.enum
             });
         });
     }
@@ -40,9 +42,8 @@ class DemoController {
             prefix: this.locals.prefix,
             iconName: this.locals.icon
         });
-        if (found) {
-            this.updateComponentPreview();
-        }
+
+        this.updateComponentPreview();
 
         this.locals = angular.copy(this.locals);
     }
@@ -70,6 +71,17 @@ class DemoController {
         this.locals[property] = this.properties[property];
         this.updateComponentPreview();
         this.locals = angular.copy(this.locals);
+    }
+
+    updatePrefix() {
+        this.updateComponentPreview();
+        this.locals = angular.copy(this.locals);
+    }
+
+    reset() {
+        this.properties = {};
+        this.locals = {};
+        this.component = '';
     }
 }
 
