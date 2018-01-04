@@ -1,10 +1,10 @@
 {
-  "name": "angular-fa",
-  "version": "1.0.0",
-  "description": "Fontawesome angularized",
+  "name": "@priotas/angular-fa",
+  "version": "0.0.1",
+  "description": "Fontaweseome SVG icons for AngularJS",
   "main": "index.js",
-  "repository": "https://github.com/madflow/angularjs-fa",
-  "author": "madflow <madflow@localhost>",
+  "repository": "https://github.com/priotas/angularjs-fa",
+  "author": "madflow <oss@priotas.de>",
   "license": "MIT",
   "private": false,
   "devDependencies": {
