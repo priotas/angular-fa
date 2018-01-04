@@ -24,6 +24,7 @@
     "html-webpack-plugin": "^2.30.1",
     "jest": "^22.0.4",
     "jquery": "^3.2.1",
+    "live-server": "^1.2.0",
     "npm-run-all": "^4.1.2",
     "popper.js": "^1.12.9",
     "raw-loader": "^0.5.1",
@@ -33,7 +34,8 @@
   },
   "scripts": {
     "test": "jest tests",
-    "demo:dev": "webpack --watch --hot",
-    "demo:serve": "static ./demo/dist"
+    "demo:dev": "webpack --watch --hot --config webpack.demo.config.js",
+    "demo:serve": "live-server ./demo/dist",
+    "docs": "webpack --config webpack.docs.config.js"
   }
 }
