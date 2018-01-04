@@ -2,6 +2,15 @@
 
 [![Build Status](https://travis-ci.org/priotas/angular-fa.svg?branch=master)](https://travis-ci.org/priotas/angular-fa)
 
+# Installation
+
+```
+yarn add  @priotas/angular-fa
+```
+
+```
+npm install --save @priotas/angular-fa
+```
 
 # Usage
 
