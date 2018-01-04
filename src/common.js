@@ -85,11 +85,18 @@ const options = {
 };
 
 function classList(props) {
-
     let truthy = function(prop) {
-        let isFalsy = angular.isUndefined(prop) || prop === 'false' || prop === 0 || prop === false;
-        let isTruthy = angular.isDefined(prop)  || prop === 'true' || prop === 1 || prop === true;
-        return isFalsy ? false : (isTruthy ? true : false);  
+        let isFalsy =
+            angular.isUndefined(prop) ||
+            prop === 'false' ||
+            prop === 0 ||
+            prop === false;
+        let isTruthy =
+            angular.isDefined(prop) ||
+            prop === 'true' ||
+            prop === 1 ||
+            prop === true;
+        return isFalsy ? false : isTruthy ? true : false;
     };
 
     let classes = {
@@ -106,7 +113,7 @@ function classList(props) {
         [`fa-pull-${props.pull}`]: !!props.pull
     };
 
-    let filteredClasslist =  Object.keys(classes)
+    let filteredClasslist = Object.keys(classes)
         .map(key => {
             return angular.isString(classes[key]) || classes[key] === true
                 ? key
