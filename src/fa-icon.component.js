@@ -1,10 +1,8 @@
 import angular from 'angular';
 import fontawesome from '@fortawesome/fontawesome';
-import { classList, options } from './common';
+import { classList, options, maskToIcon } from './common';
 
-const MODULE_NAME = 'angular-fa';
-
-angular.module(MODULE_NAME, []).component('faIcon', {
+let component = {
     template: '',
     bindings: {
         border: '@',
@@ -40,13 +38,24 @@ angular.module(MODULE_NAME, []).component('faIcon', {
                     iconName: iconOptions.icon
                 };
 
-                let classes = {
-                    classes: classList(iconOptions)
+                let transform = angular.isString(this.transform)
+                    ? fontawesome.parse.transform(this.transform)
+                    : {};
+
+                let mask = angular.isString(this.mask)
+                    ? fontawesome.icon(maskToIcon(this.mask))
+                    : null;
+
+                let params = {
+                    classes: classList(iconOptions),
+                    transform: transform,
+                    mask: mask,
+                    symbol: this.symbol
                 };
 
                 let found = fontawesome.findIconDefinition(iconDefinition);
                 if (found) {
-                    let icon = fontawesome.icon(iconDefinition, classes);
+                    let icon = fontawesome.icon(iconDefinition, params);
                     this.rendered = icon.html[0];
                     $element.empty();
                     $element.append(this.rendered);
@@ -54,6 +63,6 @@ angular.module(MODULE_NAME, []).component('faIcon', {
             };
         }
     ]
-});
+};
 
-export default MODULE_NAME;
+export default component;

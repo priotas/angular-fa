@@ -3,8 +3,8 @@ import angular from 'angular';
 const types = {
     string: 'string',
     boolean: 'boolean',
-    integer: 'integer',
-}
+    integer: 'integer'
+};
 
 const options = {
     border: {
@@ -79,19 +79,25 @@ const options = {
         default: null
     },
     symbol: {
-        type: types.boolean,
-        default: false
+        type: types.string,
+        default: ''
     }
 };
 
 function classList(props) {
 
+    let truthy = function(prop) {
+        let isFalsy = angular.isUndefined(prop) || prop === 'false' || prop === 0 || prop === false;
+        let isTruthy = angular.isDefined(prop)  || prop === 'true' || prop === 1 || prop === true;
+        return isFalsy ? false : (isTruthy ? true : false);  
+    };
+
     let classes = {
-        'fa-spin': props.spin,
-        'fa-pulse': props.pulse,
-        'fa-fw': props.fixedWidth,
-        'fa-border': props.border,
-        'fa-li': props.listItem,
+        'fa-spin': truthy(props.spin),
+        'fa-pulse': truthy(props.pulse),
+        'fa-fw': truthy(props.fixedWidth),
+        'fa-border': truthy(props.border),
+        'fa-li': truthy(props.listItem),
         'fa-flip-horizontal':
             props.flip === 'horizontal' || props.flip === 'both',
         'fa-flip-vertical': props.flip === 'vertical' || props.flip === 'both',
@@ -100,9 +106,23 @@ function classList(props) {
         [`fa-pull-${props.pull}`]: !!props.pull
     };
 
-    return Object.keys(classes)
-        .map(key => (angular.isString(classes[key]) || classes[key] === true ? key : null))
+    let filteredClasslist =  Object.keys(classes)
+        .map(key => {
+            return angular.isString(classes[key]) || classes[key] === true
+                ? key
+                : null;
+        })
         .filter(key => key);
+    return filteredClasslist;
 }
 
-export { classList, options, types };
+function maskToIcon(mask) {
+    let parts = mask.split(' ');
+    let iconDefinition = {
+        prefix: angular.isDefined(parts[1]) ? parts[0] : 'fas',
+        iconName: angular.isDefined(parts[1]) ? parts[1] : parts[0]
+    };
+    return iconDefinition;
+}
+
+export { classList, options, maskToIcon, types };
