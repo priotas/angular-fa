@@ -22,39 +22,51 @@ let component = {
     },
     controller: [
         '$element',
+        '$attrs',
         function($element) {
-            this.$onInit = () => {
-                let iconOptions = {};
-                for (let key in options) {
-                    if (this[key]) {
-                        iconOptions[key] = this[key];
-                    } else {
-                        iconOptions[key] = options[key].default;
-                    }
-                }
+            this.$onChanges = changes => {
+                this.renderIcon();
+            };
 
-                let iconDefinition = {
-                    prefix: iconOptions.prefix,
-                    iconName: iconOptions.icon
-                };
+            this.$postLink = () => {
+                this.renderIcon();
+            };
 
-                let transform = angular.isString(this.transform)
-                    ? fontawesome.parse.transform(this.transform)
-                    : {};
-
-                let mask = angular.isString(this.mask)
-                    ? fontawesome.icon(maskToIcon(this.mask))
-                    : null;
-
-                let params = {
-                    classes: classList(iconOptions),
-                    transform: transform,
-                    mask: mask,
-                    symbol: this.symbol
-                };
-
-                let found = fontawesome.findIconDefinition(iconDefinition);
+            this.renderIcon = () => {
+                let found = fontawesome.findIconDefinition({
+                    iconName: this.icon,
+                    prefix: this.prefix
+                });
                 if (found) {
+                    let iconOptions = {};
+                    for (let key in options) {
+                        if (this[key]) {
+                            iconOptions[key] = this[key];
+                        } else {
+                            iconOptions[key] = options[key].default;
+                        }
+                    }
+
+                    let iconDefinition = {
+                        prefix: iconOptions.prefix,
+                        iconName: iconOptions.icon
+                    };
+
+                    let transform = angular.isString(this.transform)
+                        ? fontawesome.parse.transform(this.transform)
+                        : {};
+
+                    let mask = angular.isString(this.mask)
+                        ? fontawesome.icon(maskToIcon(this.mask))
+                        : null;
+
+                    let params = {
+                        classes: classList(iconOptions),
+                        transform: transform,
+                        mask: mask,
+                        symbol: this.symbol
+                    };
+
                     let icon = fontawesome.icon(iconDefinition, params);
                     this.rendered = icon.html[0];
                     $element.empty();

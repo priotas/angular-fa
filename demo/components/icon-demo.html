@@ -80,6 +80,23 @@
                 <component-compiler component="faIcon" locals="$ctrl.locals"></component-compiler>
             </div>
         </div>
+    </div>
+
+    <div class="col-sm">
+        <div class="card">
+            <div class="card-header">
+                <fa-icon icon="phone"></fa-icon> Update icon definitions
+            </div>
+            <div class="card-body">
+                <fa-icon 
+                    icon="{{$ctrl.randomIcon}}" 
+                    flip="{{$ctrl.randomFlip}}" 
+                    pulse="{{$ctrl.randomPulse}}"
+                    fixed-width="true">
+                </fa-icon> 
+                <button ng-click="$ctrl.newRandomIcon()" class="btn btn-primary btn-sm">Change Icon</button>
+            </div>
+        </div>
 
     </div>
 

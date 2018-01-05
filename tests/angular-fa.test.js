@@ -53,15 +53,21 @@ describe('faIcon Directive', function() {
         expect(element.find('svg').hasClass('fa-fw')).toBe(false);
     });
 
-    test('supports the flip property', function() {
+    test('supports the flip property: horizontal', function() {
         // horizontal
         createDirective({ icon: 'coffee', flip: 'horizontal' });
         expect(element.find('svg').hasClass('fa-flip-horizontal')).toBe(true);
         expect(element.find('svg').hasClass('fa-flip-vertical')).toBe(false);
+    });
+
+    test('supports the flip property: vertical', function() {
         // vertical
         createDirective({ icon: 'coffee', flip: 'vertical' });
         expect(element.find('svg').hasClass('fa-flip-vertical')).toBe(true);
         expect(element.find('svg').hasClass('fa-flip-horizontal')).toBe(false);
+    });
+
+    test('supports the flip property: both', function() {
         // both
         createDirective({ icon: 'coffee', flip: 'both' });
         expect(element.find('svg').hasClass('fa-flip-vertical')).toBe(true);
@@ -75,11 +81,15 @@ describe('faIcon Directive', function() {
         expect(element.find('svg').hasClass('fa-li')).toBe(false);
     });
 
-    test('supports the pull property', function() {
+    test('supports the pull property: left', function() {
         // left
         createDirective({ icon: 'coffee', pull: 'left' });
         expect(element.find('svg').hasClass('fa-pull-left')).toBe(true);
         expect(element.find('svg').hasClass('fa-pull-right')).toBe(false);
+    });
+
+
+    test('supports the pull property: right', function() {
         // right
         createDirective({ icon: 'coffee', pull: 'right' });
         expect(element.find('svg').hasClass('fa-pull-right')).toBe(true);

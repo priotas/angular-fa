@@ -15,7 +15,6 @@ class DemoController {
     }
 
     $onInit() {
-
         let props = angular.copy(options);
         delete props.icon;
         delete props.prefix;
@@ -50,10 +49,10 @@ class DemoController {
 
     updateComponentPreview() {
         let attrs = Object.keys(this.locals)
-        .map(value => {
-            return `${this.kebabCase(value)}="${this.locals[value]}"`;
-        })
-        .join(' ');
+            .map(value => {
+                return `${this.kebabCase(value)}="${this.locals[value]}"`;
+            })
+            .join(' ');
         this.component = `<fa-icon ${attrs}></fa-icon>`;
     }
 
@@ -82,6 +81,24 @@ class DemoController {
         this.properties = {};
         this.locals = {};
         this.component = '';
+    }
+
+    newRandomIcon() {
+        let items = [
+            'phone',
+            'camera',
+            'comment',
+            'bell',
+            'bluetooth',
+            'file',
+            'inbox',
+            'keyboard'
+        ];
+        this.randomIcon = items[Math.floor(Math.random() * items.length)];
+        let flips = ['vertical', 'horizontal', 'both'];
+        this.randomFlip = flips[Math.floor(Math.random() * flips.length)];
+        let booleans = ['true', 'false'];
+        this.randomPulse = booleans[Math.floor(Math.random() * booleans.length)];
     }
 }
 
