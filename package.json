@@ -1,6 +1,6 @@
 {
   "name": "@priotas/angular-fa",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Fontaweseome SVG icons for AngularJS",
   "main": "index.js",
   "repository": "https://github.com/priotas/angularjs-fa",
