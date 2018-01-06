@@ -18,7 +18,9 @@ npm install --save @priotas/angular-fa
 # Usage
 
 The component does not package the icons itself. It relies on the ```@fortawesome/fontawesome``` package to be installed. The desired available icons must be made available by using the ```fontawesome.library.add()``` method.
+
 ----
+
 **See**: 
 
 * https://fontawesome.com/how-to-use/use-with-node-js#using-the-library
