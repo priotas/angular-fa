@@ -1,7 +1,7 @@
 {
   "name": "@priotas/angular-fa",
   "version": "0.0.2",
-  "description": "Fontaweseome SVG icons for AngularJS",
+  "description": "Font Awesome SVG icons for AngularJS",
   "main": "index.js",
   "repository": "https://github.com/priotas/angularjs-fa",
   "author": "madflow <oss@priotas.de>",
