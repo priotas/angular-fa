@@ -34,7 +34,7 @@
     "webpack": "^3.8.1"
   },
   "scripts": {
-    "test": "jest tests",
+    "test": " jest test/*.js",
     "demo:dev": "webpack --watch --hot --config webpack.demo.config.js",
     "demo:serve": "live-server ./demo/dist",
     "docs": "webpack --optimize-minimize --config webpack.docs.config.js"
