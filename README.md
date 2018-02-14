@@ -32,7 +32,7 @@ The component does not package the icons itself. It relies on the ```@fortawesom
 ```JS
 // JS
 import angular from 'angular';
-import angularFa from 'angular-fa';
+import angularFa from '@priotas/angular-fa';
 import fontawesome from '@fortawesome/fontawesome';
 import solid from '@fortawesome/fontawesome-free-solid';
 import brands from '@fortawesome/fontawesome-free-brands';
