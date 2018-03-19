@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "Font Awesome SVG icons for AngularJS",
   "main": "index.js",
-  "repository": "https://github.com/priotas/angularjs-fa",
+  "repository": "https://github.com/priotas/angular-fa",
   "author": "madflow <oss@priotas.de>",
   "license": "MIT",
   "private": false,
