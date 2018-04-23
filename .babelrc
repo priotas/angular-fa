@@ -1,4 +1,14 @@
 {
-    "presets": ["env"],
-    "plugins": ["angularjs-annotate"]
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": ["last 2 versions", "safari >= 7", "ie >= 10"]
+        },
+        "modules": false
+      }
+    ]
+  ],
+  "plugins": ["angularjs-annotate"]
 }

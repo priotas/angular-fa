@@ -1,8 +1,10 @@
 {
   "name": "@priotas/angular-fa",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Font Awesome SVG icons for AngularJS",
-  "main": "dist/angular-fa.js",
+  "main": "dist/angular-fa.cjs.js",
+  "module": "dist/angular-fa.esm.js",
+  "browser": "dist/angular-fa.umd.js",
   "repository": "https://github.com/priotas/angular-fa",
   "author": "madflow <oss@priotas.de>",
   "license": "MIT",
@@ -31,6 +33,10 @@
     "popper.js": "^1.12.9",
     "raw-loader": "^0.5.1",
     "regenerator-runtime": "^0.11.1",
+    "rollup": "^0.58.1",
+    "rollup-plugin-babel": "^3.0.4",
+    "rollup-plugin-commonjs": "^9.1.0",
+    "rollup-plugin-node-resolve": "^3.3.0",
     "style-loader": "^0.19.0",
     "webpack": "^3.8.1"
   },
@@ -53,6 +59,6 @@
     "demo:dev": "webpack --watch --hot --config webpack.demo.config.js",
     "demo:serve": "live-server ./demo/dist",
     "docs": "webpack --optimize-minimize --config webpack.docs.config.js",
-    "build": "webpack --config webpack.build.config.js"
+    "build": "rollup -c"
   }
 }
