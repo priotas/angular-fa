@@ -20,7 +20,17 @@ export default [
       resolve(), // so Rollup can find `ms`
       commonjs(), // so Rollup can convert `ms` to an ES module
       babel({
-        exclude: ['node_modules/**']
+        exclude: ['node_modules/**'],
+        presets: [
+          [
+            'env',
+            {
+              modules: false
+            }
+          ]
+        ],
+        babelrc: false,
+        plugins: ['angularjs-annotate']
       })
     ]
   },
@@ -36,7 +46,17 @@ export default [
     output: [{ file: pkg.main, format: 'cjs' }, { file: pkg.module, format: 'es' }],
     plugins: [
       babel({
-        exclude: ['node_modules/**']
+        exclude: ['node_modules/**'],
+        presets: [
+          [
+            'env',
+            {
+              modules: false
+            }
+          ]
+        ],
+        babelrc: false,
+        plugins: ['angularjs-annotate']
       })
     ]
   }

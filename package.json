@@ -40,20 +40,11 @@
     "style-loader": "^0.19.0",
     "webpack": "^3.8.1"
   },
-  "presets": [
-    [
-      "env",
-      {
-        "targets": {
-          "browsers": [
-            "last 2 versions",
-            "safari >= 7",
-            "ie >= 10"
-          ]
-        }
-      }
-    ]
-  ],
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  },
   "scripts": {
     "test": " jest test/*.js",
     "demo:dev": "webpack --watch --hot --config webpack.demo.config.js",
