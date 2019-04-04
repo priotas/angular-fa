@@ -1,4 +1,3 @@
-import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import pkg from './package.json';
@@ -14,11 +13,11 @@ export default [
       globals: {
         angular: 'angular',
         '@fortawesome/fontawesome': '@fortawesome/fontawesome'
-      }
+      },
+      external: ['@fortawesome/fontawesome', 'angular']
     },
     plugins: [
-      resolve(), // so Rollup can find `ms`
-      commonjs(), // so Rollup can convert `ms` to an ES module
+      commonjs(),
       babel({
         exclude: ['node_modules/**'],
         presets: [
@@ -42,8 +41,11 @@ export default [
   // the `targets` option which can specify `dest` and `format`)
   {
     input: 'src/angular-fa.js',
-    external: ['ms'],
-    output: [{ file: pkg.main, format: 'cjs' }, { file: pkg.module, format: 'es' }],
+    output: [
+      { file: pkg.main, format: 'cjs' },
+      { file: pkg.module, format: 'es' }
+    ],
+    external: ['@fortawesome/fontawesome', 'angular'],
     plugins: [
       babel({
         exclude: ['node_modules/**'],

@@ -2,7 +2,7 @@ import angular from 'angular';
 import fontawesome from '@fortawesome/fontawesome';
 import { classList, options, maskToIcon } from './common';
 
-let component = {
+const component = {
   template: '',
   bindings: {
     border: '@',

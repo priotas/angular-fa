@@ -1,7 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var angular = _interopDefault(require('angular'));
@@ -190,5 +188,4 @@ var MODULE_NAME = 'angular-fa';
 
 angular.module(MODULE_NAME, []).component('faIcon', component);
 
-exports.faIcon = component;
-exports.default = MODULE_NAME;
+module.exports = MODULE_NAME;

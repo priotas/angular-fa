@@ -185,4 +185,3 @@ var MODULE_NAME = 'angular-fa';
 angular.module(MODULE_NAME, []).component('faIcon', component);
 
 export default MODULE_NAME;
-export { component as faIcon };
