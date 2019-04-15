@@ -51,7 +51,5 @@
     "docs": "webpack --optimize-minimize --config webpack.docs.config.js",
     "build": "rollup -c"
   },
-  "dependencies": {
-    "rollup-plugin-node-resolve": "^4.0.1"
-  }
+  "dependencies": {}
 }
