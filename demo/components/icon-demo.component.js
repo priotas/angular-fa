@@ -1,11 +1,11 @@
 import angular from 'angular';
 import { library, findIconDefinition } from '@fortawesome/fontawesome-svg-core';
-import solid from '@fortawesome/free-solid-svg-icons';
-import brands from '@fortawesome/free-brands-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 import { options, types } from '../../src/common';
 import template from './icon-demo.html';
 
-library.add(solid, brands);
+library.add(fas, fab);
 
 class DemoController {
   constructor() {
@@ -85,7 +85,7 @@ class DemoController {
   }
 
   newRandomIcon() {
-    let items = [
+    const items = [
       'phone',
       'camera',
       'comment',

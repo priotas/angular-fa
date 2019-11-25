@@ -35,12 +35,12 @@ const component = {
     };
 
     this.renderIcon = () => {
-      let found = findIconDefinition({
+      const found = findIconDefinition({
         iconName: this.icon,
         prefix: this.prefix
       });
       if (found) {
-        let iconOptions = {};
+        const iconOptions = {};
         for (let key in options) {
           if (this[key]) {
             iconOptions[key] = this[key];
@@ -49,7 +49,7 @@ const component = {
           }
         }
 
-        let iconDefinition = {
+        const iconDefinition = {
           prefix: iconOptions.prefix,
           iconName: iconOptions.icon
         };

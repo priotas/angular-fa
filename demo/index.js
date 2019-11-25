@@ -1,6 +1,6 @@
 import angular from 'angular';
 import angularFa from '../src/angular-fa';
-import bootstrapCss from 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import iconDemo from './components/icon-demo.component';
 import compilerProvider from './components/compiler.service';
 import componentCompiler from './components/compiler.component';
