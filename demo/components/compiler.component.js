@@ -1,3 +1,5 @@
+import angular from 'angular';
+
 class CompilerController {
     constructor($scope, $element, Compiler, $injector) {
         'ngInject';
@@ -13,14 +15,14 @@ class CompilerController {
 
         this.$element.children().remove();
 
-        let comp = this.$injector.get(`${this.component}Directive`)[0];
+        const comp = this.$injector.get(`${this.component}Directive`)[0];
 
         if (!comp) {
             throw `${this.component} cannot be found`;
         }
 
-        let bindings = this.getBindings(comp);
-        let attrs = bindings
+        const bindings = this.getBindings(comp);
+        const attrs = bindings
             .filter(value => {
                 return angular.isDefined(this.locals[value]);
             })
@@ -29,13 +31,13 @@ class CompilerController {
             })
             .join(' ');
 
-        let element = this.kebabCase(this.component);
-        let template = `<${element} ${attrs}></${element}>`;
+        const element = this.kebabCase(this.component);
+        const template = `<${element} ${attrs}></${element}>`;
 
         this.Compiler.compile({
             template: template
         }).then(compileData => {
-            let el = compileData.element; // Compiled DOM element
+            const el = compileData.element; // Compiled DOM element
             compileData.link(this.$scope); // Instantiate controller and link element to scope.
             this.$element.append(el);
         });

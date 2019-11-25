@@ -1,5 +1,5 @@
 import angular from 'angular';
-import fontawesome from '@fortawesome/fontawesome';
+import { findIconDefinition, parse, icon } from '@fortawesome/fontawesome-svg-core';
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -141,7 +141,7 @@ var component = {
     };
 
     this.renderIcon = function () {
-      var found = fontawesome.findIconDefinition({
+      var found = findIconDefinition({
         iconName: _this.icon,
         prefix: _this.prefix
       });
@@ -160,9 +160,9 @@ var component = {
           iconName: iconOptions.icon
         };
 
-        var transform = angular.isString(_this.transform) ? fontawesome.parse.transform(_this.transform) : {};
+        var transform = angular.isString(_this.transform) ? parse.transform(_this.transform) : {};
 
-        var mask = angular.isString(_this.mask) ? fontawesome.icon(maskToIcon(_this.mask)) : null;
+        var mask = angular.isString(_this.mask) ? icon(maskToIcon(_this.mask)) : null;
 
         var params = {
           classes: classList(iconOptions),
@@ -171,8 +171,8 @@ var component = {
           symbol: _this.symbol
         };
 
-        var icon = fontawesome.icon(iconDefinition, params);
-        _this.rendered = icon.html[0];
+        var icon$1 = icon(iconDefinition, params);
+        _this.rendered = icon$1.html[0];
         $element.empty();
         $element.append(_this.rendered);
       }

@@ -1,11 +1,10 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('angular'), require('@fortawesome/fontawesome')) :
-    typeof define === 'function' && define.amd ? define(['angular', '@fortawesome/fontawesome'], factory) :
-    (global = global || self, global.angularFa = factory(global.angular, global['@fortawesome/fontawesome']));
-}(this, function (angular, fontawesome) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('angular'), require('@fortawesome/fontawesome-svg-core')) :
+    typeof define === 'function' && define.amd ? define(['angular', '@fortawesome/fontawesome-svg-core'], factory) :
+    (global = global || self, global.angularFa = factory(global.angular, global.fontawesomeSvgCore));
+}(this, (function (angular, fontawesomeSvgCore) { 'use strict';
 
     angular = angular && angular.hasOwnProperty('default') ? angular['default'] : angular;
-    fontawesome = fontawesome && fontawesome.hasOwnProperty('default') ? fontawesome['default'] : fontawesome;
 
     function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -147,7 +146,7 @@
         };
 
         this.renderIcon = function () {
-          var found = fontawesome.findIconDefinition({
+          var found = fontawesomeSvgCore.findIconDefinition({
             iconName: _this.icon,
             prefix: _this.prefix
           });
@@ -166,9 +165,9 @@
               iconName: iconOptions.icon
             };
 
-            var transform = angular.isString(_this.transform) ? fontawesome.parse.transform(_this.transform) : {};
+            var transform = angular.isString(_this.transform) ? fontawesomeSvgCore.parse.transform(_this.transform) : {};
 
-            var mask = angular.isString(_this.mask) ? fontawesome.icon(maskToIcon(_this.mask)) : null;
+            var mask = angular.isString(_this.mask) ? fontawesomeSvgCore.icon(maskToIcon(_this.mask)) : null;
 
             var params = {
               classes: classList(iconOptions),
@@ -177,7 +176,7 @@
               symbol: _this.symbol
             };
 
-            var icon = fontawesome.icon(iconDefinition, params);
+            var icon = fontawesomeSvgCore.icon(iconDefinition, params);
             _this.rendered = icon.html[0];
             $element.empty();
             $element.append(_this.rendered);
@@ -192,4 +191,4 @@
 
     return MODULE_NAME;
 
-}));
+})));

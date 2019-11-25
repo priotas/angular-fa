@@ -3,7 +3,7 @@
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var angular = _interopDefault(require('angular'));
-var fontawesome = _interopDefault(require('@fortawesome/fontawesome'));
+var fontawesomeSvgCore = require('@fortawesome/fontawesome-svg-core');
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -145,7 +145,7 @@ var component = {
     };
 
     this.renderIcon = function () {
-      var found = fontawesome.findIconDefinition({
+      var found = fontawesomeSvgCore.findIconDefinition({
         iconName: _this.icon,
         prefix: _this.prefix
       });
@@ -164,9 +164,9 @@ var component = {
           iconName: iconOptions.icon
         };
 
-        var transform = angular.isString(_this.transform) ? fontawesome.parse.transform(_this.transform) : {};
+        var transform = angular.isString(_this.transform) ? fontawesomeSvgCore.parse.transform(_this.transform) : {};
 
-        var mask = angular.isString(_this.mask) ? fontawesome.icon(maskToIcon(_this.mask)) : null;
+        var mask = angular.isString(_this.mask) ? fontawesomeSvgCore.icon(maskToIcon(_this.mask)) : null;
 
         var params = {
           classes: classList(iconOptions),
@@ -175,7 +175,7 @@ var component = {
           symbol: _this.symbol
         };
 
-        var icon = fontawesome.icon(iconDefinition, params);
+        var icon = fontawesomeSvgCore.icon(iconDefinition, params);
         _this.rendered = icon.html[0];
         $element.empty();
         $element.append(_this.rendered);

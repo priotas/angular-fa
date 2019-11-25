@@ -1,5 +1,9 @@
 import angular from 'angular';
-import fontawesome from '@fortawesome/fontawesome';
+import {
+  findIconDefinition,
+  icon as faIcon,
+  parse
+} from '@fortawesome/fontawesome-svg-core';
 import { classList, options, maskToIcon } from './common';
 
 const component = {
@@ -31,7 +35,7 @@ const component = {
     };
 
     this.renderIcon = () => {
-      let found = fontawesome.findIconDefinition({
+      let found = findIconDefinition({
         iconName: this.icon,
         prefix: this.prefix
       });
@@ -50,18 +54,22 @@ const component = {
           iconName: iconOptions.icon
         };
 
-        let transform = angular.isString(this.transform) ? fontawesome.parse.transform(this.transform) : {};
+        const transform = angular.isString(this.transform)
+          ? parse.transform(this.transform)
+          : {};
 
-        let mask = angular.isString(this.mask) ? fontawesome.icon(maskToIcon(this.mask)) : null;
+        const mask = angular.isString(this.mask)
+          ? faIcon(maskToIcon(this.mask))
+          : null;
 
-        let params = {
+        const params = {
           classes: classList(iconOptions),
           transform: transform,
           mask: mask,
           symbol: this.symbol
         };
 
-        let icon = fontawesome.icon(iconDefinition, params);
+        const icon = faIcon(iconDefinition, params);
         this.rendered = icon.html[0];
         $element.empty();
         $element.append(this.rendered);
